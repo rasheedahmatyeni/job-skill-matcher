@@ -29,6 +29,18 @@ st.markdown(
         font-weight: 700;
         border-radius: 12px;
     }
+    [data-testid="stColumn"]:nth-child(1) [data-testid="stMetric"] {
+    background: linear-gradient(135deg, #0EA5E9, #6366F1);
+}
+[data-testid="stColumn"]:nth-child(2) [data-testid="stMetric"] {
+    background: linear-gradient(135deg, #7C3AED, #EC4899);
+}
+[data-testid="stColumn"]:nth-child(3) [data-testid="stMetric"] {
+    background: linear-gradient(135deg, #10B981, #84CC16);
+}
+[data-testid="stColumn"]:nth-child(4) [data-testid="stMetric"] {
+    background: linear-gradient(135deg, #F59E0B, #EF4444);
+}
     </style>
     """,
     unsafe_allow_html=True,
