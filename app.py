@@ -3,7 +3,36 @@ import requests
 import streamlit as st
 
 from matcher import analyze_match, extract_pdf_text, get_ai_recommendations
+st.set_page_config(page_title="Job Skill Matcher", page_icon="🎯")
 
+st.markdown(
+    """
+    <style>
+    h1 {
+        background: linear-gradient(90deg, #7C3AED, #EC4899, #F59E0B);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    [data-testid="stMetric"] {
+        background: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
+        padding: 16px;
+        border-radius: 16px;
+        box-shadow: 0 4px 14px rgba(124, 58, 237, 0.25);
+    }
+    [data-testid="stMetric"] * {
+        color: #FFFFFF !important;
+    }
+    button[kind="primary"], button[data-testid="stBaseButton-primary"] {
+        background: linear-gradient(90deg, #7C3AED, #EC4899);
+        border: none;
+        color: #FFFFFF;
+        font-weight: 700;
+        border-radius: 12px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 SAMPLE_RESUME = """Data Analyst
 Built ML pipelines in Python and pandas to forecast product demand.
 Created SQL reports and automated weekly data-quality checks.
@@ -69,8 +98,8 @@ if st.button("Analyze Match", type="primary", width="stretch"):
             st.write("No skills from the current taxonomy were found in the job description.")
 
         st.subheader("Matched and missing skills")
-        st.write("Matched:", ", ".join(result["matched_skills"]) or "None")
-        st.write("Missing:", ", ".join(result["missing_skills"]) or "None")
+        st.success("✅ Matched: " + (", ".join(result["matched_skills"]) or "None"))
+        st.warning("🎯 Missing: " + (", ".join(result["missing_skills"]) or "None"))
 
         with st.expander("Relevant resume evidence", expanded=True):
             if result["evidence"]:
